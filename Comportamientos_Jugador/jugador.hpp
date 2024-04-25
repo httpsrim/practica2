@@ -31,7 +31,7 @@ struct nodeN0{
   bool operator<(const nodeN0 &b)const{
     if(st.jugador.f < b.st.jugador.f)
       return true;
-    else if(st.jugador.f == b.st.jugador.f && st.jugador.c == b.st.jugador.c)
+    else if(st.jugador.f == b.st.jugador.f && st.jugador.c < b.st.jugador.c)
       return true;
     else if(st.jugador.f == b.st.jugador.f && st.jugador.c == b.st.jugador.c && st.jugador.brujula <  b.st.jugador.brujula)
       return true;
