@@ -291,11 +291,11 @@ bool AnchuraSoloJugador(const stateN0 &inicio, const ubicacion &final, const vec
 	}
 	return solutionFound;
 }
-
+/*
 void PintaEstado(const ubicacion &p){
 	cout << "(" << p.f << "," << p.c << "," << p.brujula <<")\n";
 }
-
+*/
 
 // Segunda version busqueda en anchura, revuelve plan
 list<Action> AnchuraSoloJugador_V2(const stateN0 &inicio, const ubicacion &final, const vector<vector<unsigned char>> &mapa)
@@ -313,7 +313,7 @@ list<Action> AnchuraSoloJugador_V2(const stateN0 &inicio, const ubicacion &final
 	{
 		frontier.pop_front();
 		explored.push_back(current_node);
-		PintaEstado(current_node.st.jugador);
+		//PintaEstado(current_node.st.jugador);
 		PintaPlan(current_node.secuencia);
 
 		// Generar hijo actWALK
@@ -321,8 +321,8 @@ list<Action> AnchuraSoloJugador_V2(const stateN0 &inicio, const ubicacion &final
 		child_walk.st = apply(actWALK, current_node.st, mapa);
 		child_walk.secuencia.push_back(actWALK);
 
-		cout << "\t";
-		PintaPlan(child_walk.secuencia);
+		//cout << "\t";
+		//PintaPlan(child_walk.secuencia);
 
 
 		if (child_walk.st.jugador.f == final.f && child_walk.st.jugador.c == final.c)
@@ -335,16 +335,16 @@ list<Action> AnchuraSoloJugador_V2(const stateN0 &inicio, const ubicacion &final
 			frontier.push_back(child_walk);
 		}
 		else if (Find(child_walk.st, frontier)){
-			cout << "está en frontier ";
-			PintaEstado(child_walk.st.jugador);
+			//cout << "está en frontier ";
+			//PintaEstado(child_walk.st.jugador);
 
 			cout << endl;
 			for (auto it= frontier.begin();it != frontier.end(); ++it){
 				PintaPlan(it->secuencia);
-				PintaEstado(it->st.jugador);
-				cout << endl;
+				//PintaEstado(it->st.jugador);
+				//cout << endl;
 			}
-			cout << "===========================\n";
+			//cout << "===========================\n";
 		}
 		if (!solutionFound)
 		{
@@ -397,7 +397,7 @@ list<Action> AnchuraSoloJugador_V3(const stateN0 &inicio, const ubicacion &final
 {
 	nodeN0 current_node;
 	list<nodeN0> frontier;
-	set<nodeN0> explored;
+	list<nodeN0> explored;
 	list<Action> plan;
 	current_node.st = inicio;
 	frontier.push_back(current_node);
@@ -407,23 +407,40 @@ list<Action> AnchuraSoloJugador_V3(const stateN0 &inicio, const ubicacion &final
 	while (!frontier.empty() && !solutionFound)
 	{
 		frontier.pop_front();
-		explored.insert(current_node);
+		explored.push_back(current_node);
+		//PintaEstado(current_node.st.jugador);
+		PintaPlan(current_node.secuencia);
 
 		// Generar hijo actWALK
 		nodeN0 child_walk = current_node;
 		child_walk.st = apply(actWALK, current_node.st, mapa);
 		child_walk.secuencia.push_back(actWALK);
 
+		//cout << "\t";
+		//PintaPlan(child_walk.secuencia);
+
+
 		if (child_walk.st.jugador.f == final.f && child_walk.st.jugador.c == final.c)
 		{
 			current_node = child_walk;
 			solutionFound = true;
 		}
-		else if (explored.find(child_walk) == explored.end())
+		else if (!Find(child_walk.st, frontier) && !Find(child_walk.st, explored))
 		{
 			frontier.push_back(child_walk);
 		}
+		else if (Find(child_walk.st, frontier)){
+			//cout << "está en frontier ";
+			//PintaEstado(child_walk.st.jugador);
 
+			cout << endl;
+			for (auto it= frontier.begin();it != frontier.end(); ++it){
+				PintaPlan(it->secuencia);
+				//PintaEstado(it->st.jugador);
+				//cout << endl;
+			}
+			//cout << "===========================\n";
+		}
 		if (!solutionFound)
 		{
 			nodeN0 child_run = current_node;
@@ -435,19 +452,18 @@ list<Action> AnchuraSoloJugador_V3(const stateN0 &inicio, const ubicacion &final
 				current_node = child_run;
 				solutionFound = true;
 			}
-			else if (explored.find(child_run) == explored.end())
+			else if (!Find(child_run.st, frontier) && !Find(child_run.st, explored))
 			{
 				frontier.push_back(child_run);
 			}
 		}
-
 		if (!solutionFound)
 		{
 			// Generar hijo actTURN_R
 			nodeN0 child_turnl = current_node;
 			child_turnl.st = apply(actTURN_L, current_node.st, mapa);
 			child_turnl.secuencia.push_back(actTURN_L);
-			if (explored.find(child_turnl) == explored.end())
+			if (!(Find(child_turnl.st, frontier)) && !(Find(child_turnl.st, explored)))
 			{
 				frontier.push_back(child_turnl);
 			}
@@ -455,23 +471,13 @@ list<Action> AnchuraSoloJugador_V3(const stateN0 &inicio, const ubicacion &final
 			nodeN0 child_turnsr = current_node;
 			child_turnsr.st = apply(actTURN_SR, current_node.st, mapa);
 			child_turnsr.secuencia.push_back(actTURN_SR);
-			if (explored.find(child_turnsr) == explored.end())
+			if (!(Find(child_turnsr.st, frontier)) && !(Find(child_turnsr.st, explored)))
 			{
 				frontier.push_back(child_turnsr);
 			}
 		}
 		if (!solutionFound && !frontier.empty())
-		{
 			current_node = frontier.front();
-			while (!frontier.empty() && explored.find(current_node) != explored.end())
-			{
-				frontier.pop_front();
-				if (!frontier.empty())
-				{
-					current_node = frontier.front();
-				}
-			}
-		}
 	}
 	if (solutionFound)
 	{
@@ -503,7 +509,7 @@ Action ComportamientoJugador::think(Sensores sensores)
 			switch (sensores.nivel)
 			{
 			case 0:
-				plan = AnchuraSoloJugador_V2(c_state, goal, mapaResultado);
+				plan = AnchuraSoloJugador_V3(c_state, goal, mapaResultado);
 				if (plan.size() > 0)
 				{
 					hayPlan = true;
@@ -525,7 +531,7 @@ Action ComportamientoJugador::think(Sensores sensores)
 		{
 			accion = plan.front();
 			plan.pop_front();
-			cout << "acción: " << accion << endl;
+			//cout << "acción: " << accion << endl;
 		}
 		if (plan.size() == 0)
 		{
