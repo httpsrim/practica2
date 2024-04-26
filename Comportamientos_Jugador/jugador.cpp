@@ -83,6 +83,74 @@ bool verColaborador(const stateN0 &st){
 			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f-3 == st.colaborador.f-3) return true;
 			else return false;
 			break;
+		case noreste:
+			if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+1 == st.colaborador.c+1) return true;
+			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c == st.colaborador.c) return true;
+			else if(st.jugador.f == st.colaborador.f && st.jugador.c+1 == st.colaborador.c+1) return true;
+			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c == st.colaborador.c) return true;
+			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+1 == st.colaborador.c+1) return true;
+			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+2 == st.colaborador.c+2) return true;			
+			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+2 == st.colaborador.c+2) return true;
+			else if(st.jugador.f == st.colaborador.f && st.jugador.c+2 == st.colaborador.c+2) return true;
+			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c == st.colaborador.c) return true;
+			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+1 == st.colaborador.c+1) return true;
+			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+2 == st.colaborador.c+2) return true;
+			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+3 == st.colaborador.c+3) return true;
+			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+3 == st.colaborador.c+3) return true;
+			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+3 == st.colaborador.c+3) return true;
+			else if(st.jugador.f == st.colaborador.f && st.jugador.c+3 == st.colaborador.c+3) return true;
+			break;
+		case noroeste:
+			if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+1 == st.colaborador.c-1) return true;
+			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c == st.colaborador.c) return true;
+			else if(st.jugador.f == st.colaborador.f && st.jugador.c+1 == st.colaborador.c-1) return true;
+			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c == st.colaborador.c) return true;
+			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+1 == st.colaborador.c-1) return true;
+			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+2 == st.colaborador.c-2) return true;			
+			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+2 == st.colaborador.c-2) return true;
+			else if(st.jugador.f == st.colaborador.f && st.jugador.c+2 == st.colaborador.c-2) return true;
+			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c == st.colaborador.c) return true;
+			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+1 == st.colaborador.c-1) return true;
+			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+2 == st.colaborador.c-2) return true;
+			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+3 == st.colaborador.c-3) return true;
+			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+3 == st.colaborador.c-3) return true;
+			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+3 == st.colaborador.c-3) return true;
+			else if(st.jugador.f == st.colaborador.f && st.jugador.c+3 == st.colaborador.c-3) return true;
+			break;
+		case sureste:
+			if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f+1 == st.colaborador.f+1) return true;
+			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f == st.colaborador.f) return true;
+			else if(st.jugador.c == st.colaborador.c && st.jugador.f+1 == st.colaborador.f+1) return true;
+			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f == st.colaborador.f) return true;
+			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+1 == st.colaborador.f+1) return true;
+			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+2 == st.colaborador.f+2) return true;			
+			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f+2 == st.colaborador.f+2) return true;
+			else if(st.jugador.c == st.colaborador.c && st.jugador.f+2 == st.colaborador.f+2) return true;
+			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f == st.colaborador.f) return true;
+			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+1 == st.colaborador.f+1) return true;
+			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+2 == st.colaborador.f+2) return true;
+			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+3 == st.colaborador.f+3) return true;
+			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+3 == st.colaborador.f+3) return true;
+			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f+3 == st.colaborador.f+3) return true;
+			else if(st.jugador.c == st.colaborador.c && st.jugador.f+3 == st.colaborador.f+3) return true;
+			break;
+		case suroeste:
+			if(st.jugador.c-1 == st.colaborador.c-1 && 		st.jugador.f+1 == st.colaborador.f-1) return true;
+			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f == st.colaborador.f) return true;
+			else if(st.jugador.c == st.colaborador.c && 	st.jugador.f+1 == st.colaborador.f-1) return true;
+			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f == st.colaborador.f) return true;
+			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+1 == st.colaborador.f-1) return true;
+			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+2 == st.colaborador.f-2) return true;			
+			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f+2 == st.colaborador.f-2) return true;
+			else if(st.jugador.c == st.colaborador.c && 	st.jugador.f+2 == st.colaborador.f-2) return true;
+			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f == st.colaborador.f) return true;
+			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+1 == st.colaborador.f-1) return true;
+			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+2 == st.colaborador.f-2) return true;
+			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+3 == st.colaborador.f-3) return true;
+			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+3 == st.colaborador.f-3) return true;
+			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f+3 == st.colaborador.f-3) return true;
+			else if(st.jugador.c == st.colaborador.c && 	st.jugador.f+3 == st.colaborador.f-3) return true;
+			break;
 	}
 	//if(visto == true){
 	//	cout << "visto\n";
@@ -153,7 +221,6 @@ stateN0 apply(const Action &a, const stateN0 &st, const vector<vector<unsigned c
 		sig_ubicacion = NextCasilla(st.jugador);
 		if (CasillaTransitable(sig_ubicacion, mapa) && !(sig_ubicacion.f == st.colaborador.f && sig_ubicacion.c == st.colaborador.c)){
 			st_result.jugador = sig_ubicacion;
-			//cout << nivel << endl;
 			if(nivel == 1) st_result.colaboradorVisto = verColaborador(st_result);
 			//cout << "st_result: " << st_result.colaboradorVisto << endl;
 		}
