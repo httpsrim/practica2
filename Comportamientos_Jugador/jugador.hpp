@@ -12,13 +12,10 @@ Para nivel 4 se puede usar el algoritmo del nv 2.
 struct stateN0{
   ubicacion jugador;
   ubicacion colaborador;
+  bool colaboradorVisto;
   Action ultimaOrdenColaborador;  //almacena la ultima orden que el jugador le dio al colaborador.
   bool operator == (const stateN0 &x) const{
-    if(jugador == x.jugador && colaborador.f == x.colaborador.f && colaborador.c == x.colaborador.c){
-      return true;
-    }else{
-      return false;
-    }
+    return(jugador.f == x.jugador.f && jugador.c == x.jugador.c && jugador.brujula == x.jugador.brujula && colaborador.f == x.colaborador.f && colaborador.c == x.colaborador.c && colaborador.brujula == x.colaborador.brujula);
   }
 };
 //Redefinición del tipo nodo del nivel 0
@@ -29,8 +26,7 @@ struct nodeN0{
     return (st == n.st);
   }
   bool operator<(const nodeN0 &b)const{
-    if(st.jugador.f < b.st.jugador.f)
-      return true;
+    if(st.jugador.f < b.st.jugador.f) return true;
     else if(st.jugador.f == b.st.jugador.f && st.jugador.c < b.st.jugador.c)
       return true;
     else if(st.jugador.f == b.st.jugador.f && st.jugador.c == b.st.jugador.c && st.jugador.brujula <  b.st.jugador.brujula)
@@ -40,6 +36,30 @@ struct nodeN0{
   }
 };
 
+//Tipo de nodo para nivel 1
+struct nodeN1{
+  stateN0 st;
+  list<Action> secuencia;
+  bool operator==(const nodeN1 &n) const{
+    return (st == n.st);
+  }
+  bool operator <(const nodeN1 &n) const{
+    if(st.jugador.f < n.st.jugador.f)
+      return true;
+    else if(st.jugador.f == n.st.jugador.f && st.jugador.c < n.st.jugador.c)
+      return true;
+    else if(st.jugador.f == n.st.jugador.f && st.jugador.c == n.st.jugador.c && st.jugador.brujula <  n.st.jugador.brujula)
+      return true;
+    else if(st.jugador.f == n.st.jugador.f && st.jugador.c == n.st.jugador.c && st.jugador.brujula == n.st.jugador.brujula && st.colaborador.f < n.st.colaborador.f)
+      return true;
+    else if(st.jugador.f == n.st.jugador.f && st.jugador.c == n.st.jugador.c && st.jugador.brujula == n.st.jugador.brujula && st.colaborador.f == n.st.colaborador.f && st.colaborador.c < n.st.colaborador.c)
+      return true;
+    else if(st.jugador.f == n.st.jugador.f && st.jugador.c == n.st.jugador.c && st.jugador.brujula == n.st.jugador.brujula && st.colaborador.f == n.st.colaborador.f && st.colaborador.c == n.st.colaborador.c && st.colaborador.brujula < n.st.colaborador.brujula)
+      return true;
+    else
+      return false;
+  }
+};
 class ComportamientoJugador : public Comportamiento {
   public:
     ComportamientoJugador(unsigned int size) : Comportamiento(size) {
