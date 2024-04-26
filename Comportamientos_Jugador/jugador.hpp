@@ -18,6 +18,17 @@ struct stateN0{
     return(jugador.f == x.jugador.f && jugador.c == x.jugador.c && jugador.brujula == x.jugador.brujula && colaborador.f == x.colaborador.f && colaborador.c == x.colaborador.c && colaborador.brujula == x.colaborador.brujula);
   }
 };
+/*
+struct stateN1{
+  ubicacion jugador;
+  ubicacion colaborador;
+  bool colaboradorVisto;
+  Action ultimaOrdenColaborador;  //almacena la ultima orden que el jugador le dio al colaborador.
+  bool operator == (const stateN0 &x) const{
+    return(jugador.f == x.jugador.f && jugador.c == x.jugador.c && jugador.brujula == x.jugador.brujula && colaborador.f == x.colaborador.f && colaborador.c == x.colaborador.c && colaborador.brujula == x.colaborador.brujula);
+  }
+};
+*/
 //Redefinición del tipo nodo del nivel 0
 struct nodeN0{
   stateN0 st;

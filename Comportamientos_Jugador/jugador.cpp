@@ -9,147 +9,102 @@
 //¿Veo el colaborador?
 bool verColaborador(const stateN0 &st){
 	bool visto = false;
-	int max = 0;
-	cout << "entro en verColaborador" << endl;
 	switch(st.jugador.brujula){
 		case norte:
-			if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+1 == st.colaborador.c+1) return true;
-			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c == st.colaborador.c) return true;
-			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c-1 == st.colaborador.c-1) return true;
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+2 == st.colaborador.c+2) return true;
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+1 == st.colaborador.c+1) return true;
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c == st.colaborador.c) return true;			
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c-1 == st.colaborador.c-1) return true;
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c-2 == st.colaborador.c-2) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+3 == st.colaborador.c+3) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+2 == st.colaborador.c+2) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+1 == st.colaborador.c+1) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c == st.colaborador.c) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c-1 == st.colaborador.c-1) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c-2 == st.colaborador.c-2) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c-3 == st.colaborador.c-3) return true;
-			else return false;
+			if(st.colaborador.f < st.jugador.f-3){
+				return false;
+			}else{
+				if(st.colaborador.c <= st.jugador.c+3 && st.colaborador.c > st.jugador.c-3){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
 			break;
 		case sur:
-			if(st.jugador.f+1 == st.colaborador.f+1 && st.jugador.c+1 == st.colaborador.c+1) return true;
-			else if(st.jugador.f+1 == st.colaborador.f+1 && st.jugador.c == st.colaborador.c) return true;
-			else if(st.jugador.f+1 == st.colaborador.f+1 && st.jugador.c-1 == st.colaborador.c-1) return true;
-			else if(st.jugador.f+2 == st.colaborador.f+2 && st.jugador.c+2 == st.colaborador.c+2) return true;
-			else if(st.jugador.f+2 == st.colaborador.f+2 && st.jugador.c+1 == st.colaborador.c+1) return true;
-			else if(st.jugador.f+2 == st.colaborador.f+2 && st.jugador.c == st.colaborador.c) return true;			
-			else if(st.jugador.f+2 == st.colaborador.f+2 && st.jugador.c-1 == st.colaborador.c-1) return true;
-			else if(st.jugador.f+2 == st.colaborador.f+2 && st.jugador.c-2 == st.colaborador.c-2) return true;
-			else if(st.jugador.f+3 == st.colaborador.f+3 && st.jugador.c+3 == st.colaborador.c+3) return true;
-			else if(st.jugador.f+3 == st.colaborador.f+3 && st.jugador.c+2 == st.colaborador.c+2) return true;
-			else if(st.jugador.f+3 == st.colaborador.f+3 && st.jugador.c+1 == st.colaborador.c+1) return true;
-			else if(st.jugador.f+3 == st.colaborador.f+3 && st.jugador.c == st.colaborador.c) return true;
-			else if(st.jugador.f+3 == st.colaborador.f+3 && st.jugador.c-1 == st.colaborador.c-1) return true;
-			else if(st.jugador.f+3 == st.colaborador.f+3 && st.jugador.c-2 == st.colaborador.c-2) return true;
-			else if(st.jugador.f+3 == st.colaborador.f+3 && st.jugador.c-3 == st.colaborador.c-3) return true;
-			else return false;
+			if(st.colaborador.f > st.jugador.f+3){
+				return false;
+			}else{
+				if(st.colaborador.c <= st.jugador.c+3 && st.colaborador.c >= st.jugador.c-3){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}	
+			break;
 		case este:
-			if(st.jugador.c+1 == st.colaborador.c+1 && st.jugador.f+1 == st.colaborador.f+1) return true;
-			else if(st.jugador.c+1 == st.colaborador.c+1 && st.jugador.f == st.colaborador.f) return true;
-			else if(st.jugador.c+1 == st.colaborador.c+1 && st.jugador.f-1 == st.colaborador.f-1) return true;
-			else if(st.jugador.c+2 == st.colaborador.c+2 && st.jugador.f+2 == st.colaborador.f+2) return true;
-			else if(st.jugador.c+2 == st.colaborador.c+2 && st.jugador.f+1 == st.colaborador.f+1) return true;
-			else if(st.jugador.c+2 == st.colaborador.c+2 && st.jugador.f == st.colaborador.f) return true;			
-			else if(st.jugador.c+2 == st.colaborador.c+2 && st.jugador.f-1 == st.colaborador.f-1) return true;
-			else if(st.jugador.c+2 == st.colaborador.c+2 && st.jugador.f-2 == st.colaborador.f-2) return true;
-			else if(st.jugador.c+3 == st.colaborador.c+3 && st.jugador.f+3 == st.colaborador.f+3) return true;
-			else if(st.jugador.c+3 == st.colaborador.c+3 && st.jugador.f+2 == st.colaborador.f+2) return true;
-			else if(st.jugador.c+3 == st.colaborador.c+3 && st.jugador.f+1 == st.colaborador.f+1) return true;
-			else if(st.jugador.c+3 == st.colaborador.c+3 && st.jugador.f == st.colaborador.f) return true;
-			else if(st.jugador.c+3 == st.colaborador.c+3 && st.jugador.f-1 == st.colaborador.f-1) return true;
-			else if(st.jugador.c+3 == st.colaborador.c+3 && st.jugador.f-2 == st.colaborador.f-2) return true;
-			else if(st.jugador.c+3 == st.colaborador.c+3 && st.jugador.f-3 == st.colaborador.f-3) return true;
-			else return false;
+			if(st.colaborador.c > st.jugador.c-3){
+				return false;
+			}else{
+				if(st.colaborador.f <= st.jugador.f+3 && st.colaborador.f >= st.jugador.f-3){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}	
 			break;
 		case oeste:
-			if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f+1 == st.colaborador.f+1) return true;
-			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f == st.colaborador.f) return true;
-			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f-1 == st.colaborador.f-1) return true;
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+2 == st.colaborador.f+2) return true;
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+1 == st.colaborador.f+1) return true;
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f == st.colaborador.f) return true;			
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f-1 == st.colaborador.f-1) return true;
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f-2 == st.colaborador.f-2) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+3 == st.colaborador.f+3) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+2 == st.colaborador.f+2) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+1 == st.colaborador.f+1) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f == st.colaborador.f) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f-1 == st.colaborador.f-1) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f-2 == st.colaborador.f-2) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f-3 == st.colaborador.f-3) return true;
-			else return false;
+			if(st.colaborador.c > st.jugador.c+3){
+				return false;
+			}else{
+				if(st.colaborador.f <= st.jugador.f + 3 && st.colaborador.f >= st.jugador.f-3){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}	
 			break;
 		case noreste:
-			if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+1 == st.colaborador.c+1) return true;
-			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c == st.colaborador.c) return true;
-			else if(st.jugador.f == st.colaborador.f && st.jugador.c+1 == st.colaborador.c+1) return true;
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c == st.colaborador.c) return true;
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+1 == st.colaborador.c+1) return true;
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+2 == st.colaborador.c+2) return true;			
-			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+2 == st.colaborador.c+2) return true;
-			else if(st.jugador.f == st.colaborador.f && st.jugador.c+2 == st.colaborador.c+2) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c == st.colaborador.c) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+1 == st.colaborador.c+1) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+2 == st.colaborador.c+2) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+3 == st.colaborador.c+3) return true;
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+3 == st.colaborador.c+3) return true;
-			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+3 == st.colaborador.c+3) return true;
-			else if(st.jugador.f == st.colaborador.f && st.jugador.c+3 == st.colaborador.c+3) return true;
+			if(st.colaborador.c > st.jugador.c+3){
+				return false;
+			}else{
+				if(st.colaborador.f >= st.jugador.f-3 && st.colaborador.f <= st.jugador.f){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}	
 			break;
 		case noroeste:
-			if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+1 == st.colaborador.c-1) return true;
-			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c == st.colaborador.c) return true;
-			else if(st.jugador.f == st.colaborador.f && st.jugador.c+1 == st.colaborador.c-1) return true;
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c == st.colaborador.c) return true;
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+1 == st.colaborador.c-1) return true;
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+2 == st.colaborador.c-2) return true;			
-			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+2 == st.colaborador.c-2) return true;
-			else if(st.jugador.f == st.colaborador.f && st.jugador.c+2 == st.colaborador.c-2) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c == st.colaborador.c) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+1 == st.colaborador.c-1) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+2 == st.colaborador.c-2) return true;
-			else if(st.jugador.f-3 == st.colaborador.f-3 && st.jugador.c+3 == st.colaborador.c-3) return true;
-			else if(st.jugador.f-2 == st.colaborador.f-2 && st.jugador.c+3 == st.colaborador.c-3) return true;
-			else if(st.jugador.f-1 == st.colaborador.f-1 && st.jugador.c+3 == st.colaborador.c-3) return true;
-			else if(st.jugador.f == st.colaborador.f && st.jugador.c+3 == st.colaborador.c-3) return true;
+			if(st.colaborador.c > st.jugador.c+3){
+				return false;
+			}else{
+				if(st.colaborador.f >= st.jugador.f-3 && st.colaborador.f <= st.jugador.f){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}	
 			break;
 		case sureste:
-			if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f+1 == st.colaborador.f+1) return true;
-			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f == st.colaborador.f) return true;
-			else if(st.jugador.c == st.colaborador.c && st.jugador.f+1 == st.colaborador.f+1) return true;
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f == st.colaborador.f) return true;
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+1 == st.colaborador.f+1) return true;
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+2 == st.colaborador.f+2) return true;			
-			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f+2 == st.colaborador.f+2) return true;
-			else if(st.jugador.c == st.colaborador.c && st.jugador.f+2 == st.colaborador.f+2) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f == st.colaborador.f) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+1 == st.colaborador.f+1) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+2 == st.colaborador.f+2) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+3 == st.colaborador.f+3) return true;
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+3 == st.colaborador.f+3) return true;
-			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f+3 == st.colaborador.f+3) return true;
-			else if(st.jugador.c == st.colaborador.c && st.jugador.f+3 == st.colaborador.f+3) return true;
+			if(st.colaborador.f > st.jugador.f+3){
+				return false;
+			}else{
+				if(st.colaborador.c <= st.jugador.c+3 && st.colaborador.c >= st.jugador.c){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}	
 			break;
 		case suroeste:
-			if(st.jugador.c-1 == st.colaborador.c-1 && 		st.jugador.f+1 == st.colaborador.f-1) return true;
-			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f == st.colaborador.f) return true;
-			else if(st.jugador.c == st.colaborador.c && 	st.jugador.f+1 == st.colaborador.f-1) return true;
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f == st.colaborador.f) return true;
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+1 == st.colaborador.f-1) return true;
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+2 == st.colaborador.f-2) return true;			
-			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f+2 == st.colaborador.f-2) return true;
-			else if(st.jugador.c == st.colaborador.c && 	st.jugador.f+2 == st.colaborador.f-2) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f == st.colaborador.f) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+1 == st.colaborador.f-1) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+2 == st.colaborador.f-2) return true;
-			else if(st.jugador.c-3 == st.colaborador.c-3 && st.jugador.f+3 == st.colaborador.f-3) return true;
-			else if(st.jugador.c-2 == st.colaborador.c-2 && st.jugador.f+3 == st.colaborador.f-3) return true;
-			else if(st.jugador.c-1 == st.colaborador.c-1 && st.jugador.f+3 == st.colaborador.f-3) return true;
-			else if(st.jugador.c == st.colaborador.c && 	st.jugador.f+3 == st.colaborador.f-3) return true;
+			if(st.colaborador.f > st.jugador.f+3){
+				return false;
+			}else{
+				if(st.colaborador.c >= st.jugador.c-3 && st.colaborador.c <= st.jugador.c){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}	
 			break;
 	}
 	//if(visto == true){
@@ -221,7 +176,9 @@ stateN0 apply(const Action &a, const stateN0 &st, const vector<vector<unsigned c
 		sig_ubicacion = NextCasilla(st.jugador);
 		if (CasillaTransitable(sig_ubicacion, mapa) && !(sig_ubicacion.f == st.colaborador.f && sig_ubicacion.c == st.colaborador.c)){
 			st_result.jugador = sig_ubicacion;
-			if(nivel == 1) st_result.colaboradorVisto = verColaborador(st_result);
+			if(nivel == 1){
+				st_result.colaboradorVisto = verColaborador(st_result);
+			}
 			//cout << "st_result: " << st_result.colaboradorVisto << endl;
 		}
 		break;
@@ -242,6 +199,16 @@ stateN0 apply(const Action &a, const stateN0 &st, const vector<vector<unsigned c
 	case actTURN_SR:
 		st_result.jugador.brujula = static_cast<Orientacion>((st_result.jugador.brujula + 1) % 8);
 		if(nivel == 1) st_result.colaboradorVisto = verColaborador(st_result);
+		break;
+
+	case act_CLB_WALK:
+		sig_ubicacion = NextCasilla(st.colaborador);
+		if(CasillaTransitable(sig_ubicacion,mapa) && !(sig_ubicacion.f == st.jugador.f && sig_ubicacion.c == st.jugador.c)){
+			st_result.jugador = sig_ubicacion;
+		}
+		break;
+	case act_CLB_TURN_SR:
+		st_result.colaborador.brujula = static_cast<Orientacion>((st_result.colaborador.brujula + 1) % 8);
 		break;
 	}
 	return st_result;
@@ -419,6 +386,12 @@ list<Action> AnchuraSoloJugador(const stateN0 &inicio, const ubicacion &final, c
 	}
 	return plan;
 }
+
+void pintaEtadoN1(nodeN1 &st){
+	cout << "(" << st.st.jugador.f << ", " << st.st.jugador.c << ", " << st.st.jugador.brujula << ")" << endl;
+	cout << "(" << st.st.colaborador.f << ", " << st.st.colaborador.c << ", " << st.st.colaborador.brujula << ", " << st.st.ultimaOrdenColaborador << ")" << endl; 
+}
+
 //Busqueda en anchura con colaborador, Nivel 1
 list<Action> AnchuraSoloColaborador(const stateN0 &inicio, const ubicacion &final, const vector<vector<unsigned char>> &mapa){
 	nodeN1 current_node;
@@ -427,18 +400,21 @@ list<Action> AnchuraSoloColaborador(const stateN0 &inicio, const ubicacion &fina
 	list<Action> plan;
 	current_node.st = inicio;
 	bool solutionFound = (current_node.st.colaborador.f == final.f && current_node.st.colaborador.c == final.c);
-	bool veoColaborador = false;
+	bool veoColaborador = verColaborador(current_node.st);
 	frontier.push_back(current_node);
 	
 	
 	while(!frontier.empty() && !solutionFound){
 		frontier.pop_front();
 		explored.insert(current_node);
-		veoColaborador = current_node.st.colaboradorVisto;
-			cout << veoColaborador << endl;
+		veoColaborador = verColaborador(current_node.st);
+		
+		cout << "tamaño frontier: " << frontier.size() << "\t tamaño explored: " << explored.size() << endl;
+		PintaPlan(current_node.secuencia);
+		pintaEtadoN1(current_node);
 
 		if(veoColaborador){
-
+			cout << "entro colaborador\n";
 			//hijo act_CLB_walk
 			nodeN1 child_clbwalk = current_node;
 			child_clbwalk.st = apply(act_CLB_WALK,current_node.st,mapa,1);
@@ -450,55 +426,92 @@ list<Action> AnchuraSoloColaborador(const stateN0 &inicio, const ubicacion &fina
 			}
 			else if(explored.find(child_clbwalk) == explored.end()){
 				child_clbwalk.secuencia.push_back(act_CLB_WALK);
+				child_clbwalk.st.ultimaOrdenColaborador = act_CLB_WALK;
 				frontier.push_back(child_clbwalk);
 			}
-			
+			//el que se pare.
 			if(!solutionFound){
 				//hijo act_CLB_turn_SR
 				nodeN1 child_clbturnsr = current_node;
 				child_clbturnsr.st = apply(act_CLB_TURN_SR,current_node.st,mapa,1);
 				if(explored.find(child_clbturnsr) == explored.end()){
 					child_clbturnsr.secuencia.push_back(act_CLB_TURN_SR);
+					child_clbturnsr.st.ultimaOrdenColaborador = act_CLB_TURN_SR;
 					frontier.push_back(child_clbturnsr);
+				}
+				nodeN1 child_clbstop = current_node;
+				child_clbstop.st = apply(act_CLB_STOP,current_node.st,mapa,1);
+				if(explored.find(child_clbstop) == explored.end()){
+					child_clbstop.secuencia.push_back(act_CLB_STOP);
+					child_clbstop.st.ultimaOrdenColaborador = act_CLB_STOP;
+					frontier.push_back(child_clbstop);
 				}
 			}
 		}
-		else{
-			//hijo actWALK
-			nodeN1 child_walk = current_node;
-			child_walk.st = apply(actWALK,current_node.st,mapa,1);
-			
-			 if(explored.find(child_walk) == explored.end()){
-				child_walk.secuencia.push_back(actWALK);
-				frontier.push_back(child_walk);
+		//genero estado intermedio
+		if(current_node.st.ultimaOrdenColaborador == act_CLB_WALK){
+			nodeN1 modificacion = current_node;
+			modificacion.st = apply(act_CLB_WALK,current_node.st,mapa,1);
+			if(!(modificacion == current_node)){
+				current_node = modificacion;
 			}
-			if(!child_walk.st.colaboradorVisto){
-				//hijo actRUN
-				nodeN1 child_run = current_node;
-				child_run.st = apply(actRUN,current_node.st,mapa,1);
+		}
+		else if(current_node.st.ultimaOrdenColaborador == act_CLB_TURN_SR){
+			nodeN1 modificacion = current_node;
+			modificacion.st = apply(act_CLB_TURN_SR,current_node.st,mapa,1);
+			if(!(modificacion == current_node)){
+				current_node = modificacion;
+			}
+		}
+		else if(current_node.st.ultimaOrdenColaborador == act_CLB_STOP){
+			nodeN1 modificacion = current_node;
+			modificacion.st = apply(act_CLB_STOP,current_node.st,mapa,1);
+			if(!(modificacion == current_node)){
+				current_node = modificacion;
+			}
+		}
+		
+		//hijo actWALK
+		nodeN1 child_walk = current_node;
+		child_walk.st = apply(actWALK,current_node.st,mapa,1);
 
-				 if(explored.find(child_run) == explored.end()){
-					child_run.secuencia.push_back(actRUN);
-					frontier.push_back(child_run);
-				}
+		if(explored.find(child_walk) == explored.end()){
+			child_walk.secuencia.push_back(actWALK);
+			frontier.push_back(child_walk);
+		}
+		if(!child_walk.st.colaboradorVisto){
+			//hijo actRUN
+			nodeN1 child_run = current_node;
+			child_run.st = apply(actRUN,current_node.st,mapa,1);
+			 if(explored.find(child_run) == explored.end()){
+				child_run.secuencia.push_back(actRUN);
+				frontier.push_back(child_run);
 			}
-			if(!child_walk.st.colaboradorVisto){
-				//hijo actTURN_L
-				nodeN1 child_turnl = current_node;
-				child_turnl.st = apply(actTURN_L,current_node.st,mapa,1);
-				if(explored.find(child_turnl) == explored.end()){
-					child_turnl.secuencia.push_back(actTURN_L);
-					frontier.push_back(child_turnl);
-				}
-				//hijo actTURN_SR
-				nodeN1 child_turnsr = current_node;
-				child_turnsr.st = apply(actTURN_SR,current_node.st,mapa,1);
-				if(explored.find(child_turnsr) == explored.end()){
-					child_turnsr.secuencia.push_back(actTURN_SR);
-					frontier.push_back(child_turnsr);
-				}
+		}
+		if(!child_walk.st.colaboradorVisto){
+			//hijo actTURN_L
+			nodeN1 child_turnl = current_node;
+			child_turnl.st = apply(actTURN_L,current_node.st,mapa,1);
+			if(explored.find(child_turnl) == explored.end()){
+				child_turnl.secuencia.push_back(actTURN_L);
+				frontier.push_back(child_turnl);
 			}
-		}		
+			//hijo actTURN_SR
+			nodeN1 child_turnsr = current_node;
+			child_turnsr.st = apply(actTURN_SR,current_node.st,mapa,1);
+			if(explored.find(child_turnsr) == explored.end()){
+				child_turnsr.secuencia.push_back(actTURN_SR);
+				frontier.push_back(child_turnsr);
+			}
+			//hijo actIDLE
+			nodeN1 child_idle = current_node;
+			child_idle.st = apply(actIDLE,current_node.st,mapa,1);
+			if(explored.find(child_idle) == explored.end()){
+				child_idle.secuencia.push_back(actIDLE);
+				frontier.push_back(child_idle);
+			}
+		}
+	
 		if(!solutionFound && !frontier.empty()){
 			current_node = frontier.front();
 			while(!frontier.empty() && explored.find(current_node) != explored.end()){
@@ -508,7 +521,6 @@ list<Action> AnchuraSoloColaborador(const stateN0 &inicio, const ubicacion &fina
 			}
 		}
 	}
-
 	if (solutionFound){
 		plan = current_node.secuencia;
 		cout << "Encontrado plan: ";
@@ -549,7 +561,7 @@ Action ComportamientoJugador::think(Sensores sensores)
 				}
 				break;
 			case 1:
-				c_state.colaboradorVisto = verColaborador(c_state);
+				//c_state.colaboradorVisto = verColaborador(c_state);
 				plan = AnchuraSoloColaborador(c_state, goal, mapaResultado);
 				if (plan.size() > 0){
 					hayPlan = true;
