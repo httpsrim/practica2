@@ -178,6 +178,13 @@ stateN0 applyN0(const Action &a, const stateN0 &st, const vector<vector<unsigned
 		sig_ubicacion = NextCasilla(st.jugador);
 		if (CasillaTransitable(sig_ubicacion, mapa) && !(sig_ubicacion.f == st.colaborador.f && sig_ubicacion.c == st.colaborador.c)){
 			st_result.jugador = sig_ubicacion;
+<<<<<<< HEAD
+=======
+			if(nivel == 1){
+				st_result.colaboradorVisto = verColaborador(st_result);
+			}
+			//cout << "st_result: " << st_result.colaboradorVisto << endl;
+>>>>>>> 6c646fdad01d7ddbcda0e80e3846c928e626fd24
 		}
 		break;
 	case actRUN: // Si las proximas 2 casillas son transitables y NO está ocupada por el colaborador
@@ -194,6 +201,16 @@ stateN0 applyN0(const Action &a, const stateN0 &st, const vector<vector<unsigned
 		break;
 	case actTURN_SR:
 		st_result.jugador.brujula = static_cast<Orientacion>((st_result.jugador.brujula + 1) % 8);
+		break;
+
+	case act_CLB_WALK:
+		sig_ubicacion = NextCasilla(st.colaborador);
+		if(CasillaTransitable(sig_ubicacion,mapa) && !(sig_ubicacion.f == st.jugador.f && sig_ubicacion.c == st.jugador.c)){
+			st_result.jugador = sig_ubicacion;
+		}
+		break;
+	case act_CLB_TURN_SR:
+		st_result.colaborador.brujula = static_cast<Orientacion>((st_result.colaborador.brujula + 1) % 8);
 		break;
 	}
 	return st_result;
@@ -492,7 +509,11 @@ list<Action> AnchuraSoloColaborador(const stateN1 &inicio, const ubicacion &fina
 					frontier.push_back(child_clbturnsr);
 				}
 				nodeN1 child_clbstop = current_node;
+<<<<<<< HEAD
 				child_clbstop.st = applyN1(act_CLB_STOP,current_node.st,mapa);
+=======
+				child_clbstop.st = apply(act_CLB_STOP,current_node.st,mapa,1);
+>>>>>>> 6c646fdad01d7ddbcda0e80e3846c928e626fd24
 				if(explored.find(child_clbstop) == explored.end()){
 					child_clbstop.secuencia.push_back(act_CLB_STOP);
 					child_clbstop.st.ultimaOrdenColaborador = act_CLB_STOP;
@@ -503,21 +524,33 @@ list<Action> AnchuraSoloColaborador(const stateN1 &inicio, const ubicacion &fina
 		//genero estado intermedio
 		if(current_node.st.ultimaOrdenColaborador == act_CLB_WALK){
 			nodeN1 modificacion = current_node;
+<<<<<<< HEAD
 			modificacion.st = applyN1(act_CLB_WALK,current_node.st,mapa);
+=======
+			modificacion.st = apply(act_CLB_WALK,current_node.st,mapa,1);
+>>>>>>> 6c646fdad01d7ddbcda0e80e3846c928e626fd24
 			if(!(modificacion == current_node)){
 				current_node = modificacion;
 			}
 		}
 		else if(current_node.st.ultimaOrdenColaborador == act_CLB_TURN_SR){
 			nodeN1 modificacion = current_node;
+<<<<<<< HEAD
 			modificacion.st = applyN1(act_CLB_TURN_SR,current_node.st,mapa);
+=======
+			modificacion.st = apply(act_CLB_TURN_SR,current_node.st,mapa,1);
+>>>>>>> 6c646fdad01d7ddbcda0e80e3846c928e626fd24
 			if(!(modificacion == current_node)){
 				current_node = modificacion;
 			}
 		}
 		else if(current_node.st.ultimaOrdenColaborador == act_CLB_STOP){
 			nodeN1 modificacion = current_node;
+<<<<<<< HEAD
 			modificacion.st = applyN1(act_CLB_STOP,current_node.st,mapa);
+=======
+			modificacion.st = apply(act_CLB_STOP,current_node.st,mapa,1);
+>>>>>>> 6c646fdad01d7ddbcda0e80e3846c928e626fd24
 			if(!(modificacion == current_node)){
 				current_node = modificacion;
 			}
@@ -525,7 +558,11 @@ list<Action> AnchuraSoloColaborador(const stateN1 &inicio, const ubicacion &fina
 		
 		//hijo actWALK
 		nodeN1 child_walk = current_node;
+<<<<<<< HEAD
 		child_walk.st = applyN1(actWALK,current_node.st,mapa);
+=======
+		child_walk.st = apply(actWALK,current_node.st,mapa,1);
+>>>>>>> 6c646fdad01d7ddbcda0e80e3846c928e626fd24
 
 		if(explored.find(child_walk) == explored.end()){
 			child_walk.secuencia.push_back(actWALK);
@@ -534,7 +571,11 @@ list<Action> AnchuraSoloColaborador(const stateN1 &inicio, const ubicacion &fina
 		if(!child_walk.st.colaboradorVisto){
 			//hijo actRUN
 			nodeN1 child_run = current_node;
+<<<<<<< HEAD
 			child_run.st = applyN1(actRUN,current_node.st,mapa);
+=======
+			child_run.st = apply(actRUN,current_node.st,mapa,1);
+>>>>>>> 6c646fdad01d7ddbcda0e80e3846c928e626fd24
 			 if(explored.find(child_run) == explored.end()){
 				child_run.secuencia.push_back(actRUN);
 				frontier.push_back(child_run);
@@ -543,21 +584,33 @@ list<Action> AnchuraSoloColaborador(const stateN1 &inicio, const ubicacion &fina
 		if(!child_walk.st.colaboradorVisto){
 			//hijo actTURN_L
 			nodeN1 child_turnl = current_node;
+<<<<<<< HEAD
 			child_turnl.st = applyN1(actTURN_L,current_node.st,mapa);
+=======
+			child_turnl.st = apply(actTURN_L,current_node.st,mapa,1);
+>>>>>>> 6c646fdad01d7ddbcda0e80e3846c928e626fd24
 			if(explored.find(child_turnl) == explored.end()){
 				child_turnl.secuencia.push_back(actTURN_L);
 				frontier.push_back(child_turnl);
 			}
 			//hijo actTURN_SR
 			nodeN1 child_turnsr = current_node;
+<<<<<<< HEAD
 			child_turnsr.st = applyN1(actTURN_SR,current_node.st,mapa);
+=======
+			child_turnsr.st = apply(actTURN_SR,current_node.st,mapa,1);
+>>>>>>> 6c646fdad01d7ddbcda0e80e3846c928e626fd24
 			if(explored.find(child_turnsr) == explored.end()){
 				child_turnsr.secuencia.push_back(actTURN_SR);
 				frontier.push_back(child_turnsr);
 			}
 			//hijo actIDLE
 			nodeN1 child_idle = current_node;
+<<<<<<< HEAD
 			child_idle.st = applyN1(actIDLE,current_node.st,mapa);
+=======
+			child_idle.st = apply(actIDLE,current_node.st,mapa,1);
+>>>>>>> 6c646fdad01d7ddbcda0e80e3846c928e626fd24
 			if(explored.find(child_idle) == explored.end()){
 				child_idle.secuencia.push_back(actIDLE);
 				frontier.push_back(child_idle);
@@ -592,6 +645,7 @@ Action ComportamientoJugador::think(Sensores sensores)
 			cout << "Calculando un nuevo plan\n";
 			goal.f = sensores.destinoF;
 			goal.c = sensores.destinoC;
+<<<<<<< HEAD
 			switch (sensores.nivel){
 				case 0:
 					c_stateN0.jugador.f = sensores.posF;
@@ -629,6 +683,31 @@ Action ComportamientoJugador::think(Sensores sensores)
 				case 3:
 					cout << "Pendiente de implementacion\n";
 					break;
+=======
+			switch (sensores.nivel)
+			{
+			case 0:
+				plan = AnchuraSoloJugador(c_state, goal, mapaResultado);
+				if (plan.size() > 0){
+					hayPlan = true;
+					VisualizarPlan(c_state, plan);
+				}
+				break;
+			case 1:
+				//c_state.colaboradorVisto = verColaborador(c_state);
+				plan = AnchuraSoloColaborador(c_state, goal, mapaResultado);
+				if (plan.size() > 0){
+					hayPlan = true;
+					VisualizarPlan(c_state, plan);
+				}
+				break;
+			case 2:
+				cout << "Pendiente de implementacion\n";
+				break;
+			case 3:
+				cout << "Pendiente de implementacion\n";
+				break;
+>>>>>>> 6c646fdad01d7ddbcda0e80e3846c928e626fd24
 			}
 		}
 		if (hayPlan && plan.size() > 0)
