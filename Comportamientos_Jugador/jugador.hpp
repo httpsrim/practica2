@@ -12,12 +12,12 @@ Para nivel 4 se puede usar el algoritmo del nv 2.
 struct stateN0{
   ubicacion jugador;
   ubicacion colaborador;
-  bool colaboradorVisto;
   Action ultimaOrdenColaborador;  //almacena la ultima orden que el jugador le dio al colaborador.
   bool operator == (const stateN0 &x) const{
-    return(jugador.f == x.jugador.f && jugador.c == x.jugador.c && jugador.brujula == x.jugador.brujula && colaborador.f == x.colaborador.f && colaborador.c == x.colaborador.c && colaborador.brujula == x.colaborador.brujula);
+    return(jugador.f == x.jugador.f && jugador.c == x.jugador.c && jugador.brujula == x.jugador.brujula);
   }
 };
+
 //Redefinición del tipo nodo del nivel 0
 struct nodeN0{
   stateN0 st;
@@ -36,9 +36,20 @@ struct nodeN0{
   }
 };
 
+//Struct para nivel 1
+struct stateN1{
+  ubicacion jugador;
+  ubicacion colaborador;
+  bool colaboradorVisto;
+  Action ultimaOrdenColaborador;  //almacena la ultima orden que el jugador le dio al colaborador.
+  bool operator == (const stateN1 &x) const{
+    return(jugador.f == x.jugador.f && jugador.c == x.jugador.c && jugador.brujula == x.jugador.brujula && colaborador.f == x.colaborador.f && colaborador.c == x.colaborador.c && colaborador.brujula == x.colaborador.brujula);
+  }
+};
+
 //Tipo de nodo para nivel 1
 struct nodeN1{
-  stateN0 st;
+  stateN1 st;
   list<Action> secuencia;
   bool operator==(const nodeN1 &n) const{
     return (st == n.st);
@@ -71,8 +82,9 @@ class ComportamientoJugador : public Comportamiento {
     ComportamientoJugador(const ComportamientoJugador & comport) : Comportamiento(comport){}
     ~ComportamientoJugador(){}
 
-    void VisualizarPlan(const stateN0 &st, const list<Action> &plan);
-
+    void VisualizarPlanN0(const stateN0 &st, const list<Action> &plan);
+    void VisualizarPlanN1(const stateN1 &st, const list<Action> &plan);
+    
     Action think(Sensores sensores);
     int interact(Action accion, int valor);
 
@@ -81,7 +93,8 @@ class ComportamientoJugador : public Comportamiento {
     // Declarar Variables de Estado
     list<Action> plan; //Almacena el plan ejecucción
     bool hayPlan;      // Si verdad indica que se está siguiendo un plan
-    stateN0 c_state;
+    stateN0 c_stateN0;
+    stateN1 c_stateN1;
     ubicacion goal;
 
 };
