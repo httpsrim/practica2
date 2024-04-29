@@ -17,21 +17,6 @@ struct stateN0{
     return(jugador.f == x.jugador.f && jugador.c == x.jugador.c && jugador.brujula == x.jugador.brujula);
   }
 };
-<<<<<<< HEAD
-
-=======
-/*
-struct stateN1{
-  ubicacion jugador;
-  ubicacion colaborador;
-  bool colaboradorVisto;
-  Action ultimaOrdenColaborador;  //almacena la ultima orden que el jugador le dio al colaborador.
-  bool operator == (const stateN0 &x) const{
-    return(jugador.f == x.jugador.f && jugador.c == x.jugador.c && jugador.brujula == x.jugador.brujula && colaborador.f == x.colaborador.f && colaborador.c == x.colaborador.c && colaborador.brujula == x.colaborador.brujula);
-  }
-};
-*/
->>>>>>> 6c646fdad01d7ddbcda0e80e3846c928e626fd24
 //Redefinición del tipo nodo del nivel 0
 struct nodeN0{
   stateN0 st;
@@ -85,6 +70,43 @@ struct nodeN1{
       return false;
   }
 };
+
+//Struct para nivel 2
+struct stateN2{
+  ubicacion jugador;
+  ubicacion colaborador;
+  int coste;    //coste de llegar a este nodo
+  bool bikini;
+  bool zapas;
+  Action ultimaOrdenColaborador;  //almacena la ultima orden que el jugador le dio al colaborador.
+  bool operator == (const stateN2 &x) const{
+    return(jugador.f == x.jugador.f && jugador.c == x.jugador.c && jugador.brujula == x.jugador.brujula && colaborador.f == x.colaborador.f && colaborador.c == x.colaborador.c && colaborador.brujula == x.colaborador.brujula);
+  }
+};
+
+//Tipo de nodo para nivel 1
+struct nodeN2{
+  stateN2 st;
+  list<Action> secuencia;
+  bool operator==(const nodeN2 &n) const{
+    return (st == n.st);
+  }
+  bool operator <(const nodeN2 &n) const{
+    if(st.jugador.f < n.st.jugador.f)
+      return true;
+    else if(st.jugador.f == n.st.jugador.f && st.jugador.c < n.st.jugador.c)
+      return true;
+    else if(st.jugador.f == n.st.jugador.f && st.jugador.c == n.st.jugador.c && st.jugador.brujula <  n.st.jugador.brujula)
+      return true;
+    else if(st.jugador.f == n.st.jugador.f && st.jugador.c == n.st.jugador.c && st.jugador.brujula == n.st.jugador.brujula && st.zapas < n.st.zapas)
+      return true;
+    else if(st.jugador.f == n.st.jugador.f && st.jugador.c == n.st.jugador.c && st.jugador.brujula == n.st.jugador.brujula && st.zapas == n.st.zapas && st.bikini < n.st.bikini)
+      return true; 
+    else
+      return false;
+  }
+};
+
 class ComportamientoJugador : public Comportamiento {
   public:
     ComportamientoJugador(unsigned int size) : Comportamiento(size) {
@@ -109,6 +131,7 @@ class ComportamientoJugador : public Comportamiento {
     bool hayPlan;      // Si verdad indica que se está siguiendo un plan
     stateN0 c_stateN0;
     stateN1 c_stateN1;
+    stateN2 c_stateN2;
     ubicacion goal;
 
 };
