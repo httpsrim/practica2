@@ -92,21 +92,26 @@ struct nodeN2{
     return (st == n.st);
   }
   bool operator <(const nodeN2 &n) const{
-    if(st.jugador.f < n.st.jugador.f)
+    return(st.coste > n.st.coste);
+  }
+};
+
+struct nodeN2comparar{
+  bool operator()(const nodeN2 &a,const nodeN2 &b)const{
+    if(a.st.jugador.f < b.st.jugador.f)
       return true;
-    else if(st.jugador.f == n.st.jugador.f && st.jugador.c < n.st.jugador.c)
+    else if(a.st.jugador.f == b.st.jugador.f && a.st.jugador.c < b.st.jugador.c)
       return true;
-    else if(st.jugador.f == n.st.jugador.f && st.jugador.c == n.st.jugador.c && st.jugador.brujula <  n.st.jugador.brujula)
+    else if(a.st.jugador.f == b.st.jugador.f && a.st.jugador.c == b.st.jugador.c && a.st.jugador.brujula <  b.st.jugador.brujula)
       return true;
-    else if(st.jugador.f == n.st.jugador.f && st.jugador.c == n.st.jugador.c && st.jugador.brujula == n.st.jugador.brujula && st.zapas < n.st.zapas)
+    else if(a.st.jugador.f == b.st.jugador.f && a.st.jugador.c == b.st.jugador.c && a.st.jugador.brujula == b.st.jugador.brujula && a.st.zapas < b.st.zapas)
       return true;
-    else if(st.jugador.f == n.st.jugador.f && st.jugador.c == n.st.jugador.c && st.jugador.brujula == n.st.jugador.brujula && st.zapas == n.st.zapas && st.bikini < n.st.bikini)
+    else if(a.st.jugador.f == b.st.jugador.f && a.st.jugador.c == b.st.jugador.c && a.st.jugador.brujula == b.st.jugador.brujula && a.st.zapas == b.st.zapas && a.st.bikini < b.st.bikini)
       return true; 
     else
       return false;
   }
 };
-
 class ComportamientoJugador : public Comportamiento {
   public:
     ComportamientoJugador(unsigned int size) : Comportamiento(size) {
@@ -120,7 +125,8 @@ class ComportamientoJugador : public Comportamiento {
 
     void VisualizarPlanN0(const stateN0 &st, const list<Action> &plan);
     void VisualizarPlanN1(const stateN1 &st, const list<Action> &plan);
-    
+    void VisualizarPlanN2(const stateN2 &st, const list<Action> &plan);
+
     Action think(Sensores sensores);
     int interact(Action accion, int valor);
 
